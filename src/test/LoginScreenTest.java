@@ -117,7 +117,7 @@ public class LoginScreenTest extends JFCTestCase {
 	    assertEquals( "Wrong dialog showing up", LoginScreen.FailedLogin, dialog.getTitle( ) );
 	    TestHelper.disposeWindow( dialog, this );
 	}
-	    
+
 	public void testValidAccount() {
 
 	    NamedComponentFinder finder = new NamedComponentFinder( JComponent.class, "ExitButton" );
