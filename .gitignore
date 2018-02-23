@@ -8,3 +8,5 @@ out/*
 .project/*
 .classpath/*
 target
+
+*.class
