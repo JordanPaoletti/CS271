@@ -6,7 +6,9 @@ out/*
 # eclipse
 .settings/*
 .project/*
+.project
 .classpath/*
+.classpath
 target
 
 *.class
