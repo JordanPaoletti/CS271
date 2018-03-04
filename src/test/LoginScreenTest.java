@@ -18,6 +18,7 @@ import junit.extensions.jfcunit.finder.DialogFinder;
 import junit.extensions.jfcunit.finder.NamedComponentFinder;
 
 import login.LoginScreen;
+import org.junit.Test;
 
 
 public class LoginScreenTest extends JFCTestCase {
@@ -51,6 +52,10 @@ public class LoginScreenTest extends JFCTestCase {
 	    finder.setName( "EnterButton" );
 	    JButton enterButton = ( JButton ) finder.find( loginScreen, 0 );
 	    assertNotNull( "Could not find the Enter button", enterButton );
+
+	    finder.setName("CreateAccountButton");
+	    JButton createAccountButton = (JButton) finder.find(loginScreen, 0);
+	    assertNotNull("Could not find the Create Account button", createAccountButton);
 
 	    finder.setName( "LoginNameTextField" );
 	    JTextField userNameField = ( JTextField ) finder.find( loginScreen, 0 );
@@ -87,6 +92,10 @@ public class LoginScreenTest extends JFCTestCase {
 	    finder.setName( "EnterButton" );
 	    JButton enterButton = ( JButton ) finder.find( loginScreen, 0 );
 	    assertNotNull( "Could not find the Enter button", enterButton );
+
+	    finder.setName("CreateAccountButton");
+	    JButton createAccountButton = (JButton) finder.find(loginScreen, 0);
+	    assertNotNull("Could not find the Create Account button", createAccountButton);
 
 	    finder.setName( "LoginNameTextField" );
 	    JTextField userNameField = ( JTextField ) finder.find( loginScreen, 0 );
@@ -128,6 +137,10 @@ public class LoginScreenTest extends JFCTestCase {
 	    JButton enterButton = ( JButton ) finder.find( loginScreen, 0 );
 	    assertNotNull( "Could not find the Enter button", enterButton );
 
+	    finder.setName("CreateAccountButton");
+	    JButton createAccountButton = (JButton) finder.find(loginScreen,0);
+	    assertNotNull("Could not find the Create Account button", createAccountButton);
+
 	    finder.setName( "LoginNameTextField" );
 	    JTextField userNameField = ( JTextField ) finder.find( loginScreen, 0 );
 	    assertNotNull( "Could not find the userNameField", userNameField );
@@ -163,6 +176,10 @@ public class LoginScreenTest extends JFCTestCase {
 	    finder.setName( "EnterButton" );
 	    JButton enterButton = ( JButton ) finder.find( loginScreen, 0 );
 	    assertNotNull( "Could not find the Enter button", enterButton );
+
+	    finder.setName("CreateAccountButton");
+	    JButton createAccountButton = (JButton)finder.find(loginScreen, 0);
+	    assertNotNull("Could not find the Create Account button", createAccountButton);
 
 	    finder.setName( "LoginNameTextField" );
 	    JTextField userNameField = ( JTextField ) finder.find( loginScreen, 0 );
