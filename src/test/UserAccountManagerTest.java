@@ -12,7 +12,7 @@ public class UserAccountManagerTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		userAccountManager = new UserAccountManager();
-		userAccountManager.addUserAccount("admin", "123456");
+		userAccountManager.addUserAccount("admin", "123456", "admin@aol.com");
 	}
 
 	public void testExistingUserAccount() {

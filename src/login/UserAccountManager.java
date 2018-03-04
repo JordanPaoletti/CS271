@@ -10,9 +10,9 @@ public class UserAccountManager {
         userAccounts = new ArrayList<UserAccount>();
     }
     
-    public void addUserAccount(String userName, String password){
+    public void addUserAccount(String userName, String password, String email){
     	if (!doesUserNameExist(userName))
-    		userAccounts.add(new UserAccount(userName,password));
+    		userAccounts.add(new UserAccount(userName,password, email));
     }
     
     public boolean doesAccountExist(String userName, String password) {
