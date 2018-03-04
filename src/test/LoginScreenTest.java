@@ -151,7 +151,7 @@ public class LoginScreenTest extends JFCTestCase {
 
 		try {
 		    helper.sendString( new StringEventData( this, userNameField, "admin" ) );
-		    helper.sendString( new StringEventData( this, passwordField, "123456") );
+		    helper.sendString( new StringEventData( this, passwordField, "Ab123456") );
 			helper.enterClickAndLeave(new MouseEventData(this, enterButton));
 		}
 		catch (Exception ex) {

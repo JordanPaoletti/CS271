@@ -9,11 +9,38 @@ public class UserAccountTest extends TestCase {
 	private UserAccount userAccount;
 	
 	public void testNewAccount() {
-		userAccount = new UserAccount("admin", "123456", "admin@aol.com");
+		userAccount = new UserAccount("admin", "Ab123456", "admin@aol.com");
 		assertNotNull(userAccount);
 		assertTrue(userAccount.matchUserName("admin"));
-		assertTrue(userAccount.isValidCredential("admin", "123456"));
+		assertTrue(userAccount.getEmail().equals("admin@aol.com"));
+		assertTrue(userAccount.isValidCredential("admin", "Ab123456"));
 	}
+
+	public void testBadAccount() {
+	    boolean thrown = false;
+	    try {
+	        new UserAccount("", "Ab123456", "a@a.com");
+        } catch (IllegalArgumentException e) {
+	        thrown = true;
+        }
+        assertTrue("invalid username", thrown);
+
+        thrown = false;
+        try {
+            new UserAccount("admin", "123456", "a@a.com");
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        assertTrue("invalid password", thrown);
+
+        thrown = false;
+        try {
+            new UserAccount("admin", "Ab123456", "@a.com");
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        assertTrue("invalid email", thrown);
+    }
 
 	public void testValidUsername() {
 	    assertFalse("Username too short", UserAccount.isValidUsername("a"));

@@ -36,7 +36,7 @@ public class LoginScreen extends JFrame{
 	  
 	private void initUserAccounts() {
 		accountManager = new UserAccountManager();
-		accountManager.addUserAccount("admin", "123456", "admin@aol.com");
+		accountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
 	}
 	
 	private void initGUI(){

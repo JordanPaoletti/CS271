@@ -12,17 +12,17 @@ public class UserAccountManagerTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		userAccountManager = new UserAccountManager();
-		userAccountManager.addUserAccount("admin", "123456", "admin@aol.com");
+		userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
 	}
 
 	public void testExistingUserAccount() {
 		assertTrue(userAccountManager.doesUserNameExist("admin"));
-		assertTrue(userAccountManager.doesAccountExist("admin", "123456"));
+		assertTrue(userAccountManager.doesAccountExist("admin", "Ab123456"));
 	}
 
-	public void testNonExistantUserAccount() {
+	public void testNonExistentUserAccount() {
 		assertFalse(userAccountManager.doesUserNameExist("BSU"));
-		assertFalse(userAccountManager.doesAccountExist("admin", "hello"));
+		assertFalse(userAccountManager.doesAccountExist("admin", "A1hello"));
 	}
 
 }

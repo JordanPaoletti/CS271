@@ -10,6 +10,14 @@ public class UserAccount {
 
 
     public UserAccount(String userName, String password, String email) {
+        if (    !isValidUsername(userName) ||
+                !isValidPassword(password) ||
+                !isValidEmail(email)
+                ) {
+            throw new IllegalArgumentException("Invalid credentials for user account");
+
+        }
+
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -20,6 +28,8 @@ public class UserAccount {
     }
 
     public void setUserName(String userName) {
+        if (!isValidUsername(userName))
+            throw new IllegalArgumentException("Invalid username");
         this.userName = userName;
     }
 
@@ -27,7 +37,9 @@ public class UserAccount {
         return password;
     }
 
-    public void setPassworde(String password) {
+    public void setPassword(String password) {
+        if (!isValidPassword(password))
+            throw new IllegalArgumentException("Invalid Password");
         this.password = password;
     }
 
@@ -36,6 +48,8 @@ public class UserAccount {
     }
 
     public void setEmail(String email) {
+        if (!isValidEmail(email))
+            throw new IllegalArgumentException("Invalid Email");
         this.email = email;
     }
 
