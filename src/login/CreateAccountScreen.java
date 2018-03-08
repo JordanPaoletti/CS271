@@ -123,6 +123,9 @@ public class CreateAccountScreen extends JFrame {
     		JOptionPane.showMessageDialog(this,"Passwords do not match.","Failed Account Creation",JOptionPane.INFORMATION_MESSAGE);
     	}else {
     		try {
+    			
+    			if 
+    			
     			UserAccount newUser = new UserAccount(userName, passString, email);
         		accountManager.addUserAccount(userName, passString, email);	
         		JOptionPane.showMessageDialog(this,"Account Created!","Account Created",JOptionPane.INFORMATION_MESSAGE);
