@@ -8,10 +8,9 @@ import java.awt.BorderLayout;
 
 public class LoginScreen extends JFrame{
 	private static final long serialVersionUID = 1L;
-	
 	public static final String SuccessfulLogin = "Successful Login";
 	public static final String FailedLogin = "Failed Login";
-	
+
 	private JLabel usernameLabel, passwordLabel;
 	private JTextField usernameTextField = new JTextField();
 	private JPasswordField passwordTextField = new JPasswordField();

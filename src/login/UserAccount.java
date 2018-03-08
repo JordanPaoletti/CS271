@@ -100,7 +100,7 @@ public class UserAccount {
     }
 
     /**
-     * Determines whether an eamil is valid or not
+     * Determines whether an email is valid or not
      * @param em email to check
      * @return true if email is valid, false otherwise
      */

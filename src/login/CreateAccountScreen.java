@@ -111,8 +111,6 @@ public class CreateAccountScreen extends JFrame {
         dispose();  //close only this frame, not entire program
     }
 
-    //TODO: Check username/password/email validity, create account
-    // 		Then, show confirmation window
     void ConfirmButton_actionPerformed(ActionEvent e) {
     	String userName = usernameField.getText();
     	String email = emailField.getText();
