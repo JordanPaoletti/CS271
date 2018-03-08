@@ -6,17 +6,21 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.BorderLayout;
 
-public class LoginScreen extends JFrame{
+public class LoginScreen extends JFrame implements MouseListener {
 	private static final long serialVersionUID = 1L;
+	
 	public static final String SuccessfulLogin = "Successful Login";
 	public static final String FailedLogin = "Failed Login";
-
+	
+	private int invalidAttempt;
 	private JLabel usernameLabel, passwordLabel;
 	private JTextField usernameTextField = new JTextField();
 	private JPasswordField passwordTextField = new JPasswordField();
 	private JButton enterButton = new JButton();
 	private JButton exitButton = new JButton();
 	private JButton createAccountButton = new JButton();
+	private JLabel forgotUser = new JLabel();
+	private JLabel forgotPass = new JLabel();
 
 	private UserAccountManager accountManager;
 	
@@ -49,7 +53,10 @@ public class LoginScreen extends JFrame{
 	    createCreateAccountButton();
 	    usernameTextField.setText("");
 	    passwordTextField.setText("");
+	    createForgotUserButton();
+	    createForgotPassButton();
 		setComponentNames();
+		invalidAttempt = 0;
 	  }
 
 	private JLabel createJLabel(String text, Font font){
@@ -67,7 +74,35 @@ public class LoginScreen extends JFrame{
 	        EnterButton_actionPerformed(e);
 	      }
 	    });
-	} 
+	}
+	
+	private void createForgotUserButton() {
+	    forgotUser.setText("Forgot Username?");
+	    forgotUser.setForeground(Color.BLUE);
+	    forgotUser.addMouseListener(new MouseAdapter() {
+	    	public void mouseClicked(MouseEvent e) {
+	    		JLabel label = (JLabel) e.getSource();
+	    		
+	    		if (label == forgotUser) {
+	    			System.out.println("Clicked Forgot User");
+	    		}
+	    	}
+	    });
+	}
+	
+	private void createForgotPassButton() {
+	    forgotPass.setText("Forgot Password?");
+	    forgotPass.setForeground(Color.BLUE);
+	    forgotPass.addMouseListener(new MouseAdapter() {
+	    	public void mouseClicked(MouseEvent e) {
+	    		JLabel label = (JLabel) e.getSource();
+	    		
+	    		if (label == forgotPass) {
+	    			System.out.println("Clicked Forgot Pass");
+	    		}
+	    	}
+	    });
+	}
 	
 	private void createExitButton(){
 	    exitButton.setFont(new java.awt.Font("Dialog", 0, 12));
@@ -90,20 +125,24 @@ public class LoginScreen extends JFrame{
 	private JPanel createMainPanel(){
 	    JPanel panel = new JPanel();
 	    panel.setLayout(new GridBagLayout());
-	    panel.add(usernameLabel,  new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0
-	            ,GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(52, 49, 0, 0), 0, 0));
-	    panel.add(usernameTextField,    new GridBagConstraints(1, 0, 2, 1, 1.0, 0.0
-	            ,GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(52, 7, 0, 73), 214, 0));
-	    panel.add(passwordTextField,       new GridBagConstraints(1, 1, 2, 1, 1.0, 0.0
-	            ,GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(17, 7, 0, 73), 214, 0));
-	    panel.add(passwordLabel,   new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0
+	    panel.add(usernameLabel,  new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0
+	            ,GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(15, 49, 0, 0), 0, 0));
+	    panel.add(usernameTextField,    new GridBagConstraints(0, 2, 2, 1, 1.0, 0.0
+	            ,GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(10, 50, 0, 73), 214, 0));
+	    panel.add(passwordTextField,       new GridBagConstraints(0, 4, 2, 1, 1.0, 0.0
+	            ,GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(10, 50, 0, 73), 214, 0));
+	    panel.add(passwordLabel,   new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0
 	            ,GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(19, 49, 0, 7), 0, 0));
-	    panel.add(enterButton,   new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0
-	            ,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(35, 70, 62, 18), 12, 0));
-	    panel.add(createAccountButton,   new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0
-	            ,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(38, 71, 62, 53), 13, 0));
-		panel.add(exitButton,   new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0
-				,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(38, 35, 62, 108), 13, 0));
+	    panel.add(exitButton,   new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0
+	            ,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(35, 48, 20, 18), 12, 0));
+	    panel.add(createAccountButton,   new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0
+	            ,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 0, 0, 50), 13, 0));
+		panel.add(enterButton,   new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0
+				,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(35, 70, 20, 74), 13, 0));
+		panel.add(forgotUser,   new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0
+	            ,GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(15, 49, 0, 0), 0, 0));
+		panel.add(forgotPass,   new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0
+	            ,GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(19, 49, 0, 7), 0, 0));
 		return panel;
 	}
 	
@@ -123,10 +162,17 @@ public class LoginScreen extends JFrame{
 	void EnterButton_actionPerformed(ActionEvent e) {
 		String userName = usernameTextField.getText();
 		char[] password = passwordTextField.getPassword();
-	    if(accountManager.doesAccountExist(userName, new String(password)))
-			JOptionPane.showMessageDialog(this, "Login Succeeded!", "Successful Login", JOptionPane.INFORMATION_MESSAGE);
-	    else
-	    	JOptionPane.showMessageDialog(this,"Login Failed","Failed Login",JOptionPane.INFORMATION_MESSAGE);
+		if (invalidAttempt < 5) {
+		    if(accountManager.doesAccountExist(userName, new String(password)))
+				JOptionPane.showMessageDialog(this, "Login Succeeded!", "Successful Login", JOptionPane.INFORMATION_MESSAGE);
+		    else {
+		    	JOptionPane.showMessageDialog(this,"Your username or password was incorrect","Login Failed",JOptionPane.INFORMATION_MESSAGE);
+		    	invalidAttempt++;
+		    }
+		}
+		else {
+			JOptionPane.showMessageDialog(this, "Locked Out", "You have made too many invalid login attempts. \nPlease wait 2 minutes to try again.", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 
 	void CreateAccountButton_actionPerformed(ActionEvent e){

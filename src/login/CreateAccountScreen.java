@@ -40,6 +40,9 @@ public class CreateAccountScreen extends JFrame {
         emailLabel = createJLabel("Email address: ", labelFont);
         usernameField.setText("");
         emailField.setText("");
+        Font myFont = new Font("Arial", Font.PLAIN, 12);
+        passRequirements.setFont(myFont);
+        passRequirements.setText("(Password must contain minimum of 8 characters, 1 uppercase letter, and 1 number)");
         passwordField.setText("");
         confirmPasswordField.setText("");
         createConfirmButton();
@@ -82,17 +85,19 @@ public class CreateAccountScreen extends JFrame {
         panel.add(usernameField,    new GridBagConstraints(1, 0, 2, 1, 1.0, 0.0
                 ,GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(52, 7, 0, 73), 214, 0));
         panel.add(passwordField,       new GridBagConstraints(1, 1, 2, 1, 1.0, 0.0
-                ,GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(17, 7, 0, 73), 214, 0));
+                ,GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(25, 7, 0, 73), 214, 0));
         panel.add(passwordLabel,   new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0
-                ,GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(17, 49, 0, 0), 0, 0));
+                ,GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(25, 49, 0, 0), 0, 0));
         panel.add(passwordConfirmationLabel, new GridBagConstraints(0,2,1,1,0.0,0.0
                 , GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(17, 49, 0, 0), 0, 0));
         panel.add(confirmPasswordField, new GridBagConstraints(1, 2,2,1,1.0,0.0
                 , GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(17, 7, 0, 73), 214, 0));
+	    panel.add(passRequirements, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0
+	    		,GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(8, 70, 62, 18), 12, 0));
         panel.add(emailLabel, new GridBagConstraints(0, 3, 1,1,0.0,0.0
-                , GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(17, 49, 0, 0), 0, 0));
+                , GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(0, 49, 0, 0), 0, 0));
         panel.add(emailField, new GridBagConstraints(1,3,2,1,1.0,0.0
-                ,GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(17, 7, 0, 73), 214,0));
+                ,GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 7, 0, 73), 214,0));
         panel.add(confirmButton,   new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0
                 ,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(35, 70, 62, 18), 12, 0));
         panel.add(cancelButton,   new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0
