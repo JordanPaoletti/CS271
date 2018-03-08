@@ -131,7 +131,7 @@ public class LoginScreen extends JFrame{
 	}
 
 	void CreateAccountButton_actionPerformed(ActionEvent e){
-		JFrame createAccount = new CreateAccountScreen("Create Account");
+		JFrame createAccount = new CreateAccountScreen("Create Account", accountManager);
 		createAccount.setVisible(true);
 	}
 

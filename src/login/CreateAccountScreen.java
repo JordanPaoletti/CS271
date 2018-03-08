@@ -3,6 +3,7 @@ package login;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.regex.Pattern;
 
 public class CreateAccountScreen extends JFrame {
 
@@ -13,13 +14,20 @@ public class CreateAccountScreen extends JFrame {
     private JTextField emailField = new JTextField();
     private JPasswordField passwordField = new JPasswordField();
     private JPasswordField confirmPasswordField = new JPasswordField();
-
-    public CreateAccountScreen(String title){
+    private UserAccountManager accountManager;
+    
+    private static final String unMessage = "A valid username is 8 to 21 characters long and only contains letters and numbers!";
+    private static final String pwMessage = "A valid password has at least 8 characters, one capitol letter, and one number!";
+    private static final String emMessage = "Please input an active email address.";
+    
+    public CreateAccountScreen(String title, UserAccountManager accountManager){
         super(title);
         initGUI();
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(createMainPanel(), BorderLayout.CENTER, 0);
         pack();
+        
+        this.accountManager = accountManager;
     }
 
     private void initGUI(){
@@ -32,6 +40,8 @@ public class CreateAccountScreen extends JFrame {
         emailLabel = createJLabel("Email address: ", labelFont);
         usernameField.setText("");
         emailField.setText("");
+        passwordField.setText("");
+        confirmPasswordField.setText("");
         createConfirmButton();
         createCancelButton();
         setComponentNames();
@@ -102,8 +112,41 @@ public class CreateAccountScreen extends JFrame {
     }
 
     //TODO: Check username/password/email validity, create account
+    // 		Then, show confirmation window
     void ConfirmButton_actionPerformed(ActionEvent e) {
-
+    	String userName = usernameField.getText();
+    	String email = emailField.getText();
+    	char[] password = passwordField.getPassword();
+    	char[] passConfirm = confirmPasswordField.getPassword();
+    	String passString = passToString(password);
+    	String confirmString = passToString(passConfirm);
+    	
+    	if (!(passString.equals(confirmString))) {
+    		JOptionPane.showMessageDialog(this,"Passwords do not match.","Failed Account Creation",JOptionPane.INFORMATION_MESSAGE);
+    	}else {
+    		try {
+    			UserAccount newUser = new UserAccount(userName, passString, email);
+        		accountManager.addUserAccount(userName, passString, email);	
+        		JOptionPane.showMessageDialog(this,"Account Created!","Account Created",JOptionPane.INFORMATION_MESSAGE);
+    		
+    		}catch(IllegalArgumentException i) {
+    			String mes = i.getMessage();
+    			
+    			if (mes.equals("invalid userName")) {
+    				JOptionPane.showMessageDialog(this, unMessage,"Invalid Username",JOptionPane.INFORMATION_MESSAGE);
+    			}else if (mes.equals("invalid password")) {
+    				JOptionPane.showMessageDialog(this, pwMessage,"Invalid Password",JOptionPane.INFORMATION_MESSAGE);
+    			}else if (mes.equals("invalid email")) {
+    				JOptionPane.showMessageDialog(this, emMessage,"Invalid Email",JOptionPane.INFORMATION_MESSAGE);
+    			}
+    		}
+    	}
     }
-
+    
+    private String passToString(char[] ca) {
+    	String buf = "";
+    	for(char c : ca)
+    		buf += c;
+    	return buf;
+    }
 }

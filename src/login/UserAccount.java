@@ -2,6 +2,8 @@ package login;
 
 import java.util.regex.*;
 
+import javax.swing.JOptionPane;
+
 public class UserAccount {
 
     private String userName;
@@ -10,17 +12,17 @@ public class UserAccount {
 
 
     public UserAccount(String userName, String password, String email) {
-        if (    !isValidUsername(userName) ||
-                !isValidPassword(password) ||
-                !isValidEmail(email)
-                ) {
-            throw new IllegalArgumentException("Invalid credentials for user account");
-
+        if (!isValidUsername(userName)) {
+            throw new IllegalArgumentException("invalid userName");
+        }else if(!isValidPassword(password)) {
+        	throw new IllegalArgumentException("invalid password");
+        }else if(!isValidEmail(email)) {
+        	throw new IllegalArgumentException("invalid email");
+        }else {
+	        this.userName = userName;
+	        this.password = password;
+	        this.email = email;
         }
-
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
     }
 
     public String getUserName() {
@@ -73,7 +75,7 @@ public class UserAccount {
 
     //email regex (stupidly basic. goto emailregex.com if you want
     //an example of a more accurate one
-    private static final String EMAIL_REGEX = "^[\\p{Alpha}.]+@[\\p{Alpha}.]+";
+    private static final String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
 
     //password related fields
     private static final byte PASSWORD_MIN_LENGTH = 8;
@@ -81,6 +83,7 @@ public class UserAccount {
     private static final byte PASSWORD_MIN_CAPITALS = 1;
     private static final byte PASSWORD_MIN_NUMBERS = 1;
     private static final String PASSWORD_VALID_CHARS_REGEX = "[\\p{Graph}]";
+    
 
     /**
      * Determines whether a user name is valid or not.
@@ -89,6 +92,7 @@ public class UserAccount {
      */
     public static boolean isValidUsername(String name) {
         if (name.length() > USERNAME_MAX_LENGTH || name.length() < USERNAME_MIN_LENGTH) {
+        	System.out.println("username invalid");
             return false;
         }
 
@@ -101,17 +105,24 @@ public class UserAccount {
      * @return true if email is valid, false otherwise
      */
     public static boolean isValidEmail(String em) {
-        return Pattern.compile(EMAIL_REGEX).matcher(em).matches();
+    	boolean d = Pattern.compile(EMAIL_REGEX).matcher(em).matches();
+    	
+    	if (!d)
+        	System.out.println("email invalid");
+    	
+        return d;
     }
 
     /**
      * Determines whether a password is valid or not
      * @param pass password to check
      * @return true if password is valid, false otherwise
-     */
+     */    
     public static boolean isValidPassword(String pass) {
         if (pass.length() > PASSWORD_MAX_LENGTH || pass.length() < PASSWORD_MIN_LENGTH) {
-            return false;
+           
+        	System.out.println("password invalid");
+        	return false;
         }
 
         int numCapitals = 0;
@@ -143,7 +154,10 @@ public class UserAccount {
             i++;
         }
 
-        return validChars && hasCaps && hasNums;
+        boolean d = validChars && hasCaps && hasNums;
+        if (!d)
+        	System.out.println("invalid pass");
+        return d;
     }
 
 
