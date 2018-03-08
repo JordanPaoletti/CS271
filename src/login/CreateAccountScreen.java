@@ -124,7 +124,9 @@ public class CreateAccountScreen extends JFrame {
     	}else {
     		try {
     			
-    			if 
+    			if (accountManager.doesUserNameExist(userName)) {
+    				JOptionPane.showMessageDialog(this,"Account Created!","Invalid Username",JOptionPane.INFORMATION_MESSAGE);
+    			}
     			
     			UserAccount newUser = new UserAccount(userName, passString, email);
         		accountManager.addUserAccount(userName, passString, email);	
