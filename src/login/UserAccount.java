@@ -73,8 +73,7 @@ public class UserAccount {
     private static final byte USERNAME_MAX_LENGTH = 21;
     private static final String USERNAME_REGEX = "^[\\p{IsLetter}\\p{Digit}_]+$";
 
-    //email regex (stupidly basic. goto emailregex.com if you want
-    //an example of a more accurate one
+    //email regex
     private static final String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
 
     //password related fields
@@ -92,7 +91,6 @@ public class UserAccount {
      */
     public static boolean isValidUsername(String name) {
         if (name.length() > USERNAME_MAX_LENGTH || name.length() < USERNAME_MIN_LENGTH) {
-        	System.out.println("username invalid");
             return false;
         }
 
@@ -104,13 +102,8 @@ public class UserAccount {
      * @param em email to check
      * @return true if email is valid, false otherwise
      */
-    public static boolean isValidEmail(String em) {
-    	boolean d = Pattern.compile(EMAIL_REGEX).matcher(em).matches();
-    	
-    	if (!d)
-        	System.out.println("email invalid");
-    	
-        return d;
+    public static boolean isValidEmail(String em) {   	
+        return Pattern.compile(EMAIL_REGEX).matcher(em).matches();
     }
 
     /**
@@ -120,8 +113,6 @@ public class UserAccount {
      */    
     public static boolean isValidPassword(String pass) {
         if (pass.length() > PASSWORD_MAX_LENGTH || pass.length() < PASSWORD_MIN_LENGTH) {
-           
-        	System.out.println("password invalid");
         	return false;
         }
 
@@ -154,10 +145,7 @@ public class UserAccount {
             i++;
         }
 
-        boolean d = validChars && hasCaps && hasNums;
-        if (!d)
-        	System.out.println("invalid pass");
-        return d;
+        return validChars && hasCaps && hasNums;
     }
 
 
