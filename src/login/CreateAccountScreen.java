@@ -17,7 +17,7 @@ public class CreateAccountScreen extends JFrame {
 	private JLabel passRequirements = new JLabel();
 	private UserAccountManager accountManager;
 
-	private static final String unMessage = "A valid username is 8 to 21 characters long and only contains letters and numbers.";
+	private static final String unMessage = "A valid username is 5 to 21 characters long and only contains letters and numbers.";
 	private static final String pwMessage = "A valid password has at least 8 characters, one capitol letter, and one number.";
 	private static final String emMessage = "Please input an active email address.";
 
