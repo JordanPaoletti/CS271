@@ -11,8 +11,8 @@ public class LoginScreen extends JFrame implements MouseListener {
 	
 	public static final String SuccessfulLogin = "Successful Login";
 	public static final String FailedLogin = "Failed Login";
-	private int invalidAttempt;
 	
+	private int invalidAttempt;
 	private JLabel usernameLabel, passwordLabel;
 	private JTextField usernameTextField = new JTextField();
 	private JPasswordField passwordTextField = new JPasswordField();
@@ -122,7 +122,7 @@ public class LoginScreen extends JFrame implements MouseListener {
 		});
 	}
 
-	private JPanel createMainPanel() {
+	private JPanel createMainPanel(){
 	    JPanel panel = new JPanel();
 	    panel.setLayout(new GridBagLayout());
 	    panel.add(usernameLabel,  new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0
@@ -174,9 +174,9 @@ public class LoginScreen extends JFrame implements MouseListener {
 			JOptionPane.showMessageDialog(this, "Locked Out", "You have made too many invalid login attempts. \nPlease wait 2 minutes to try again.", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	
+
 	void CreateAccountButton_actionPerformed(ActionEvent e){
-		JFrame createAccount = new CreateAccountScreen("Create Account");
+		JFrame createAccount = new CreateAccountScreen("Create Account", accountManager);
 		createAccount.setVisible(true);
 	}
 
@@ -186,17 +186,9 @@ public class LoginScreen extends JFrame implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		JLabel label = (JLabel) e.getSource();
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
 		
-		if (label == forgotUser) {
-			JFrame createAccount = new CreateAccountScreen("Create Account");
-			createAccount.setVisible(true);
-		}
-		
-		if (label == forgotPass) {
-			//window
-		}
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package login;
 import java.util.ArrayList;
 
-
 public class UserAccountManager {
 	
     private ArrayList<UserAccount> userAccounts;
