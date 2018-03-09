@@ -77,7 +77,7 @@ public class LoginScreenTest extends JFCTestCase {
 	    DialogFinder dFinder = new DialogFinder(LoginScreen.FailedLogin);
 	    List showingDialogs = dFinder.findAll(loginScreen);
 	    assertEquals( "Number of dialogs showing is wrong", 1, showingDialogs.size( ) );
-	    JDialog dialog = ( JDialog )showingDialogs.get( 0 );
+	    JDialog dialog = ( JDialog ) showingDialogs.get( 0 );
 	    assertEquals( "Wrong dialog showing up", LoginScreen.FailedLogin, dialog.getTitle( ) );
 	    TestHelper.disposeWindow( dialog, this );
 	}
