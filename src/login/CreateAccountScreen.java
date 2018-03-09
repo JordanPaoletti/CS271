@@ -139,11 +139,11 @@ public class CreateAccountScreen extends JFrame {
 					accountManager.addUserAccount(userName, passString, email);
 					JOptionPane.showMessageDialog(this, "Account Created!", "Account Created",
 							JOptionPane.INFORMATION_MESSAGE);
-<<<<<<< HEAD
+
 					this.setVisible(false);
-=======
+
 					dispose();
->>>>>>> d49a9949a8cbe75481d1dd4ae3650caaa4d66317
+
 				}
 
 				
