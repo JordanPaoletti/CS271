@@ -30,6 +30,7 @@ public class LoginScreen extends JFrame implements MouseListener {
 		initGUI();
 	    getContentPane().setLayout(new BorderLayout());
 	    getContentPane().add(createMainPanel(), BorderLayout.CENTER,0);
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    pack();
 	}
 	  
