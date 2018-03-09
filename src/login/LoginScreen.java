@@ -166,7 +166,7 @@ public class LoginScreen extends JFrame implements MouseListener {
 		    if(accountManager.doesAccountExist(userName, new String(password)))
 				JOptionPane.showMessageDialog(this, "Login Succeeded!", "Successful Login", JOptionPane.INFORMATION_MESSAGE);
 		    else {
-		    	JOptionPane.showMessageDialog(this,"Your username or password was incorrect","Login Failed",JOptionPane.INFORMATION_MESSAGE);
+		    	JOptionPane.showMessageDialog(this,"Your username or password was incorrect","Failed Login",JOptionPane.INFORMATION_MESSAGE);
 		    	invalidAttempt++;
 		    }
 		}
