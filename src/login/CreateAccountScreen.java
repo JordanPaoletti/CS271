@@ -111,6 +111,8 @@ public class CreateAccountScreen extends JFrame {
 		confirmButton.setName("ConfirmButton");
 		usernameField.setName("UsernameField");
 		passwordField.setName("PasswordField");
+		confirmPasswordField.setName("ConfirmPasswordField");
+		emailField.setName("EmailField");
 	}
 
 	void CancelButton_actionPerformed(ActionEvent e) {
