@@ -14,68 +14,38 @@ public class Emailer {
     private static final String ACCOUNT = "bsucs271emailer@gmail.com";
     private static final String PASSWORD = "Jtmb)\"Z}@/(6h\"Fj";
 
-    public static void main(String[] args) {
-//        Properties c = new Properties();
-//        try (InputStream is = Files.newInputStream(Paths.get("mailconfig"))) {
-//            c.load(is);
-//            Emailer emailer = new Emailer(c);
-//
-//            emailer.sendEmail("",
-//                    "jordanpaoletti@u.boisestate.edu",
-//                    "test",
-//                    "test");
-//        }
-//        catch (IOException e) {
-//            System.err.println(e);
-//        }
+    public static void main(String[] args) { //tls Attempt
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
 
-        String to = "jordanpaoletti@u.boisestate.edu";
-        String from = ACCOUNT;
-
-        System.out.println("Getting properties");
-        Properties properties = new Properties();
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.socketFactory.port", "465");
-        properties.put("mail.smtp.socketFactory.Class", "javax.net.ssl.SSLSocketFactory");
-        properties.put("mail.user", ACCOUNT);
-        properties.put("mail.password", PASSWORD);
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.port", 805);
-        System.out.println("Finished Getting properties");
-
-        System.out.println("Creating Session");
-        Session session = Session.getDefaultInstance(properties, new Authenticator() {
-                    @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(ACCOUNT, PASSWORD);
-                    }
-                });
-
-        System.out.println("Finished Creating Session");
+        Session session = Session.getDefaultInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(ACCOUNT, PASSWORD);
+            }
+        });
 
         try {
-            System.out.println("Creating Message");
-            SMTPMessage message = new SMTPMessage(session);
 
-            System.out.println("Populating message");
-            message.setFrom(new InternetAddress(from));
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(ACCOUNT));
             message.setRecipient(Message.RecipientType.TO,
-                    new InternetAddress(to));
-            message.setSubject("Test email from java");
-            message.setText("This is a test email from CS271 project");
-            message.setNotifyOptions(SMTPMessage.NOTIFY_SUCCESS);
-            int returnOpt = message.getReturnOption();
-            System.out.println(returnOpt);
+                    new InternetAddress("sammcmahon@u.boisestate.edu"));
+            message.setSubject("Got it ;)");
+            message.setText("The emailer is working!");
 
-
-            System.out.println("Sending Message");
             Transport.send(message);
-            System.out.println("Sent message successfully");
+
+            System.out.println("sent");
 
         } catch (MessagingException e) {
-            System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
+
+
     }
 
     public Emailer(Properties config) {
