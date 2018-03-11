@@ -12,17 +12,19 @@ public class UserAccount {
 
 
     public UserAccount(String userName, String password, String email) {
-        if (!isValidUsername(userName)) {
-            throw new IllegalArgumentException("invalid userName");
-        }else if(!isValidPassword(password)) {
-        	throw new IllegalArgumentException("invalid password");
-        }else if(!isValidEmail(email)) {
-        	throw new IllegalArgumentException("invalid email");
-        }else {
-	        this.userName = userName;
-	        this.password = password;
-	        this.email = email;
+        if (!isValidUsername(userName) ||
+            !isValidPassword(password) ||
+            !isValidEmail(email)) {
+
+            //this exception should not be used for determining whether
+            //a particular credential is valid.
+            //Use the public static methods for that
+            throw new IllegalArgumentException("invalid account credentials");
         }
+
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
     }
 
     public String getUserName() {
@@ -74,7 +76,7 @@ public class UserAccount {
     private static final String USERNAME_REGEX = "^[\\p{IsLetter}\\p{Digit}_]+$";
 
     //email regex
-    private static final String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+    private static final String EMAIL_REGEX = "^[\\p{Alpha}.]+@[\\p{Alpha}.]+";
 
     //password related fields
     private static final byte PASSWORD_MIN_LENGTH = 8;

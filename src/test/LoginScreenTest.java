@@ -39,7 +39,7 @@ public class LoginScreenTest extends JFCTestCase {
 
 	protected void tearDown() throws Exception {
 		loginScreen = null;
-		JFCTestHelper.cleanUp(this);
+		//JFCTestHelper.cleanUp(this); //crashes tests
 		super.tearDown();
 	}
 
