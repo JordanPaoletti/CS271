@@ -144,7 +144,6 @@ public class UserAccount {
             //goto next letter
             i++;
         }
-
         return validChars && hasCaps && hasNums;
     }
 

@@ -25,4 +25,22 @@ public class UserAccountManagerTest extends TestCase {
 		assertFalse(userAccountManager.doesAccountExist("admin", "A1hello"));
 	}
 
+	public void testLockedOut() {
+		userAccountManager = new UserAccountManager();
+		userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
+		userAccountManager.setInvalidAttemptsNum(2);
+		assertFalse(userAccountManager.isLockedOut());
+		userAccountManager.setInvalidAttemptsNum();
+		assertFalse(userAccountManager.isLockedOut());
+		userAccountManager.setInvalidAttemptsNum(5);
+		assertTrue(userAccountManager.isLockedOut());
+		userAccountManager.setInvalidAttemptsNum();
+		assertTrue(userAccountManager.isLockedOut());
+
+	}
+	public void testLogin(){
+		userAccountManager = new UserAccountManager();
+		userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
+
+	}
 }

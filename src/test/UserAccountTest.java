@@ -3,6 +3,7 @@ package test;
 import junit.framework.TestCase;
 
 import login.UserAccount;
+import login.UserAccountManager;
 
 public class UserAccountTest extends TestCase {
 
@@ -73,5 +74,4 @@ public class UserAccountTest extends TestCase {
         assertTrue(UserAccount.isValidPassword("Helloworld1"));
         assertTrue(UserAccount.isValidPassword("HelloW_^^##@orld1"));
     }
-
 }

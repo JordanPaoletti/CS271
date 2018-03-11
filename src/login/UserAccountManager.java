@@ -4,6 +4,8 @@ import java.util.ArrayList;
 public class UserAccountManager {
 	
     private ArrayList<UserAccount> userAccounts;
+    private int invalidAttemptsNum;
+    private boolean locked;
     
     public UserAccountManager() {
         userAccounts = new ArrayList<UserAccount>();
@@ -26,5 +28,29 @@ public class UserAccountManager {
     		if(userAccount.matchUserName(userName))   
     			return true;   
        return false;
+    }
+
+    public void setInvalidAttemptsNum(){
+        invalidAttemptsNum++;
+        if (invalidAttemptsNum >= 5) {
+            locked = true;
+        }
+    }
+
+    public void setInvalidAttemptsNum(int nums){
+        for(int i = 0; i < nums; i++) {
+            this.invalidAttemptsNum++;
+        }
+        if (invalidAttemptsNum >= 5){
+            locked = true;
+        }
+    }
+
+    public int getInvalidAttemptsNum(){
+        return invalidAttemptsNum;
+    }
+
+    public boolean isLockedOut(){
+        return locked;
     }
 }

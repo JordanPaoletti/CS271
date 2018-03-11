@@ -11,8 +11,7 @@ public class LoginScreen extends JFrame implements MouseListener {
 	
 	public static final String SuccessfulLogin = "Successful Login";
 	public static final String FailedLogin = "Failed Login";
-	
-	private int invalidAttempt;
+
 	private JLabel usernameLabel, passwordLabel;
 	private JTextField usernameTextField = new JTextField();
 	private JPasswordField passwordTextField = new JPasswordField();
@@ -57,7 +56,6 @@ public class LoginScreen extends JFrame implements MouseListener {
 	    createForgotUserButton();
 	    createForgotPassButton();
 		setComponentNames();
-		invalidAttempt = 0;
 	  }
 
 	private JLabel createJLabel(String text, Font font){
@@ -163,12 +161,12 @@ public class LoginScreen extends JFrame implements MouseListener {
 	void EnterButton_actionPerformed(ActionEvent e) {
 		String userName = usernameTextField.getText();
 		char[] password = passwordTextField.getPassword();
-		if (invalidAttempt < 5) {
+		if (!accountManager.isLockedOut()) {
 		    if(accountManager.doesAccountExist(userName, new String(password)))
 				JOptionPane.showMessageDialog(this, "Login Succeeded!", "Successful Login", JOptionPane.INFORMATION_MESSAGE);
 		    else {
 		    	JOptionPane.showMessageDialog(this,"Your username or password was incorrect","Failed Login",JOptionPane.INFORMATION_MESSAGE);
-		    	invalidAttempt++;
+		    	accountManager.setInvalidAttemptsNum();
 		    }
 		}
 		else {
