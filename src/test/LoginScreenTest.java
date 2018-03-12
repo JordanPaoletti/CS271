@@ -82,7 +82,6 @@ public class LoginScreenTest extends JFCTestCase {
 	    TestHelper.disposeWindow( dialog, this );
 	}
 
-	@SuppressWarnings("unchecked")
 	public void testEmptyPassword() {
 
 	    NamedComponentFinder finder = new NamedComponentFinder( JComponent.class, "ExitButton" );

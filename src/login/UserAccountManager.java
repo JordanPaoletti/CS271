@@ -30,6 +30,15 @@ public class UserAccountManager {
        return false;
     }
 
+    public String findUsername(String email){
+        for (UserAccount userAccount: userAccounts){
+            if (userAccount.getEmail().equals(email)){
+                return userAccount.getUserName();
+            }
+        }
+        return "No account is associated with this email address";
+    }
+
     public void setInvalidAttemptsNum(){
         invalidAttemptsNum++;
         if (invalidAttemptsNum >= 5) {
