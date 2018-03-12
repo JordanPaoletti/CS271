@@ -170,7 +170,7 @@ public class LoginScreen extends JFrame implements MouseListener {
 		    }
 		}
 		else {
-			JOptionPane.showMessageDialog(this, "Locked Out", "You have made too many invalid login attempts. \nPlease wait 2 minutes to try again.", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this,  "You have made too many invalid login attempts.","Session Locked Out", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 

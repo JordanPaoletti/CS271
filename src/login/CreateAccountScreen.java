@@ -17,9 +17,6 @@ public class CreateAccountScreen extends JFrame {
 	private JLabel passRequirements = new JLabel();
 	private UserAccountManager accountManager;
 
-	private static final String unMessage = "A valid username is 5 to 21 characters long and only contains letters and numbers.";
-	private static final String pwMessage = "A valid password has at least 8 characters, one capitol letter, and one number.";
-	private static final String emMessage = "Please input an active email address.";
 
 	public CreateAccountScreen(String title, UserAccountManager accountManager) {
 		super(title);
@@ -121,68 +118,37 @@ public class CreateAccountScreen extends JFrame {
 
 	void ConfirmButton_actionPerformed(ActionEvent e) {
 		String userName = usernameField.getText();
-		String email = emailField.getText();
-		char[] password = passwordField.getPassword();
-		char[] passConfirm = confirmPasswordField.getPassword();
-		String passString = passToString(password);
-		String confirmString = passToString(passConfirm);
+        String email = emailField.getText();
+        String passString = new String(passwordField.getPassword());
+        String confirmString = new String(confirmPasswordField.getPassword());
 
-		if (!(UserAccount.isValidEmail(email))) {
-			JOptionPane.showMessageDialog(this, "Email is invalid", "Failed Account Creation",
-					JOptionPane.INFORMATION_MESSAGE);
-		}
+        String invalidMessage = UserAccount.getValidityMessage(userName, passString, email);
 
-		if (!(UserAccount.isValidUsername(userName))) {
-			JOptionPane.showMessageDialog(this, "Username is invalid", "Failed Account Creation",
-					JOptionPane.INFORMATION_MESSAGE);
-		}
+        if (invalidMessage != null) { //invalid credentials
+            JOptionPane.showMessageDialog(this, invalidMessage,"Invalid Information!",
+            JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if (!(passString.equals(confirmString))) { //non matching passwords
+            JOptionPane.showMessageDialog(this, "Passwords do not match.", "Failed Account Creation",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if (accountManager.doesUserNameExist(userName)) { //check username availability
+            JOptionPane.showMessageDialog(this, "This username is already in use.", "Invalid Username",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        else { //create the account
+            UserAccount newUser = new UserAccount(userName, passString, email);
+            accountManager.addUserAccount(userName, passString, email);
+            JOptionPane.showMessageDialog(this, "Account Created!", "Account Created",
+                    JOptionPane.INFORMATION_MESSAGE);
 
-		if (!(UserAccount.isValidPassword(passString))) {
-			JOptionPane.showMessageDialog(this, "Password is invalid", "Failed Account Creation",
-					JOptionPane.INFORMATION_MESSAGE);
-		}
+            dispose();
 
-		if (!(passString.equals(confirmString))) {
-			JOptionPane.showMessageDialog(this, "Passwords do not match.", "Failed Account Creation",
-					JOptionPane.INFORMATION_MESSAGE);
-		} else {
-			try {
+        }
 
-				if (accountManager.doesUserNameExist(userName)) {
-					JOptionPane.showMessageDialog(this, "This username is already in use.", "Invalid Username",
-							JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					UserAccount newUser = new UserAccount(userName, passString, email);
-					accountManager.addUserAccount(userName, passString, email);
-					JOptionPane.showMessageDialog(this, "Account Created!", "Account Created",
-							JOptionPane.INFORMATION_MESSAGE);
 
-					this.setVisible(false);
 
-					dispose();
 
-				}
+    }
 
-				
-
-			} catch (IllegalArgumentException i) {
-				String mes = i.getMessage();
-
-				if (mes.equals("invalid userName")) {
-					JOptionPane.showMessageDialog(this, unMessage, "Invalid Username", JOptionPane.INFORMATION_MESSAGE);
-				} else if (mes.equals("invalid password")) {
-					JOptionPane.showMessageDialog(this, pwMessage, "Invalid Password", JOptionPane.INFORMATION_MESSAGE);
-				} else if (mes.equals("invalid email")) {
-					JOptionPane.showMessageDialog(this, emMessage, "Invalid Email", JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
-		}
-	}
-
-	private String passToString(char[] ca) {
-		String buf = "";
-		for (char c : ca)
-			buf += c;
-		return buf;
-	}
 }

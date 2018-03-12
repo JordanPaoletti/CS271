@@ -76,7 +76,7 @@ public class UserAccount {
     private static final String USERNAME_REGEX = "^[\\p{IsLetter}\\p{Digit}_]+$";
 
     //email regex
-    private static final String EMAIL_REGEX = "^[\\p{Alpha}.]+@[\\p{Alpha}.]+";
+    private static final String EMAIL_REGEX = "^[\\p{Alnum}.]+@[\\p{Alnum}.]+";
 
     //password related fields
     private static final byte PASSWORD_MIN_LENGTH = 8;
@@ -150,5 +150,25 @@ public class UserAccount {
     }
 
 
+    //Create invalid string
+    public static final String USERNAME_MESSAGE = "A valid username is 5 to 21 characters long and only contains letters and numbers.";
+    public static final String PASSWORD_MESSAGE = "A valid password has at least 8 characters, one capital letter, and one number.";
+    public static final String EMAIL_MESSAGE = "Please input an active email address.";
+    public static final String NEWLINE_PADDING = "\n\n";
+
+    public static String getValidityMessage(String userName, String password, String email) {
+        StringBuilder ret = new StringBuilder();
+        if (!isValidUsername(userName)) {
+            ret.append(USERNAME_MESSAGE).append(NEWLINE_PADDING);
+        }
+        if (!isValidPassword(password)) {
+            ret.append(PASSWORD_MESSAGE).append(NEWLINE_PADDING);
+        }
+        if (!isValidEmail(email)) {
+            ret.append(EMAIL_MESSAGE).append(NEWLINE_PADDING);
+        }
+
+        return ret.length() > 0 ? ret.toString() : null;
+    }
 
 }
