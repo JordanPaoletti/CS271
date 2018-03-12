@@ -127,6 +127,21 @@ public class CreateAccountScreen extends JFrame {
 		String passString = passToString(password);
 		String confirmString = passToString(passConfirm);
 
+		if (!(UserAccount.isValidEmail(email))) {
+			JOptionPane.showMessageDialog(this, "Email is invalid", "Failed Account Creation",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		if (!(UserAccount.isValidUsername(userName))) {
+			JOptionPane.showMessageDialog(this, "Username is invalid", "Failed Account Creation",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		if (!(UserAccount.isValidPassword(passString))) {
+			JOptionPane.showMessageDialog(this, "Password is invalid", "Failed Account Creation",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
 		if (!(passString.equals(confirmString))) {
 			JOptionPane.showMessageDialog(this, "Passwords do not match.", "Failed Account Creation",
 					JOptionPane.INFORMATION_MESSAGE);
