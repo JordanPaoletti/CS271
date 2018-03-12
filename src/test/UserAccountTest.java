@@ -74,4 +74,41 @@ public class UserAccountTest extends TestCase {
         assertTrue(UserAccount.isValidPassword("Helloworld1"));
         assertTrue(UserAccount.isValidPassword("HelloW_^^##@orld1"));
     }
+
+    public void testValidityMessage() {
+	    //get valid messages in easy use form
+        String u = UserAccount.USERNAME_MESSAGE;
+        String p = UserAccount.PASSWORD_MESSAGE;
+        String e = UserAccount.EMAIL_MESSAGE;
+        String n = UserAccount.NEWLINE_PADDING;
+
+        assertTrue(UserAccount.getValidityMessage(
+                "aValidName", "ValidPass1", "valid@email.com") == null);
+        assertEquals(UserAccount.getValidityMessage("","",""),
+                u+n+p+n+e+n);
+        assertEquals(UserAccount.getValidityMessage(
+                "ValidName", "", ""),
+                p+n+e+n
+        );
+        assertEquals(UserAccount.getValidityMessage(
+                "", "ValidPass1", ""),
+                u+n+e+n
+        );
+        assertEquals(UserAccount.getValidityMessage(
+                "", "", "a@a.com"),
+                u+n+p+n
+        );
+        assertEquals(UserAccount.getValidityMessage(
+                "ValidName", "ValidPass1", ""),
+                e+n
+        );
+        assertEquals(UserAccount.getValidityMessage(
+                "ValidName", "", "a@a.com"),
+                p+n
+        );
+        assertEquals(UserAccount.getValidityMessage(
+                "", "ValidPass1", "a@a.com"),
+                u+n
+        );
+    }
 }
