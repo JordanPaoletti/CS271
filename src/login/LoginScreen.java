@@ -83,7 +83,6 @@ public class LoginScreen extends JFrame implements MouseListener {
 	    		JLabel label = (JLabel) e.getSource();
 	    		
 	    		if (label == forgotUser) {
-	    			System.out.println("Clicked Forgot User");
 	    			ForgotUsernameScreen forgotUsername = new ForgotUsernameScreen("Forgot Username", accountManager);
 	    			forgotUsername.setVisible(true);
 	    		}

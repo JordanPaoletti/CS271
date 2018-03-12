@@ -1,5 +1,7 @@
 package login;
 
+import email.Emailer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -88,8 +90,15 @@ public class ForgotUsernameScreen extends JFrame {
 
         String emailAddress = emailField.getText();
         String username = accountManager.findUsername(emailAddress);
-        usernameLabel = createJLabel(username, new java.awt.Font("Dialog", 0, 13));
-        JOptionPane.showMessageDialog(this, usernameLabel, "Your Username:", JOptionPane.INFORMATION_MESSAGE);
+        if (accountManager.doesUserNameExist(username)){
+            String body = "Your username is: " + username;
+            Emailer.sendEmail(emailAddress, "Username Recovery", body);
+            JOptionPane.showMessageDialog(this, "Your username has been sent to your email!", "Username recovery", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            usernameLabel = createJLabel(username, new java.awt.Font("Dialog", 0, 13));
+            JOptionPane.showMessageDialog(this, usernameLabel, "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
         dispose();
     }
 
