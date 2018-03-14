@@ -39,6 +39,14 @@ public class UserAccountManager {
         return "No account is associated with this email address";
     }
 
+    public void setPassword(String username, String password) {
+    	for (UserAccount userAccount : userAccounts) {
+    		if (userAccount.matchUserName(username)) {
+    			userAccount.setPassword(password);
+    		}
+    	}
+    }
+    
     public void setInvalidAttemptsNum(){
         invalidAttemptsNum++;
         if (invalidAttemptsNum >= 5) {
