@@ -98,7 +98,8 @@ public class LoginScreen extends JFrame implements MouseListener {
 	    		JLabel label = (JLabel) e.getSource();
 	    		
 	    		if (label == forgotPass) {
-	    			System.out.println("Clicked Forgot Pass");
+	    			ForgotPasswordScreen forgotPassword = new ForgotPasswordScreen("Forgot Password", accountManager);
+	    			forgotPassword.setVisible(true);
 	    		}
 	    	}
 	    });
@@ -171,7 +172,7 @@ public class LoginScreen extends JFrame implements MouseListener {
 		    }
 		}
 		else {
-			JOptionPane.showMessageDialog(this,  "You have made too many invalid login attempts.","Session Locked Out", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "You have made too many invalid login attempts.","Session Locked Out", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
