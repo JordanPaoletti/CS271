@@ -133,14 +133,17 @@ public class ForgotPasswordScreen extends JFrame {
 	            emailField.setText("");
 	            panel.remove(emailLabel);
 	            panel.remove(emailField);
+	            panel.remove(submitButton);
 	            panel.add(passLabel, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
 	                    GridBagConstraints.NONE, new Insets(15, 49, 0, 0), 0, 0));
 	            panel.add(passField, new GridBagConstraints(1, 1, 2, 1, 1.0, 0.0, GridBagConstraints.WEST,
-	                    GridBagConstraints.HORIZONTAL, new Insets(15, 7, 0, 0), 214, 0));
+	                    GridBagConstraints.HORIZONTAL, new Insets(15, 7, 0, 49), 214, 0));
 	            panel.add(createJLabel("Confirm Password: ", new Font("Dialog", 0, 13)), new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
 	                    GridBagConstraints.NONE, new Insets(15, 49, 0, 0), 0, 0));
 	            panel.add(confirmPassField, new GridBagConstraints(1, 2, 2, 1, 1.0, 0.0, GridBagConstraints.WEST,
-	                    GridBagConstraints.HORIZONTAL, new Insets(15, 7, 0, 0), 214, 0));
+	                    GridBagConstraints.HORIZONTAL, new Insets(15, 7, 0, 49), 214, 0));
+                panel.add(submitButton, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
+                        GridBagConstraints.NONE, new Insets(38, 49, 62, 0), 12, 0));
     			resetSwitch = 2;
     		}
     		else {
