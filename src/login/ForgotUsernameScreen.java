@@ -14,7 +14,7 @@ public class ForgotUsernameScreen extends JFrame {
     private JTextField emailField = new JTextField();
     private JPanel mainPanel;
     private UserAccountManager accountManager;
-    private Boolean sent;
+    private Boolean sent = false;
 
     public ForgotUsernameScreen(String title, UserAccountManager manager){
         super(title);
@@ -103,10 +103,11 @@ public class ForgotUsernameScreen extends JFrame {
         dispose();
     }
 
+    /*Overriden method and helpers for testing*/
+
    private void setSent(){ sent = true; }
 
    public Boolean getSent(){ return sent; }
-
 
    //Method used for testing environment
     public void makeEmail(String emailAddress, String username){

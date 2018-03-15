@@ -184,6 +184,9 @@ public class ForgotPasswordScreen extends JFrame {
 
 
     /*Helpers and overriden methods for testing*/
+
+    public Boolean getEmailSent(){return emailSent;}
+
     public String forgotPassMailer(String emailAddress, String username) {
 
         String rstCode=null;
@@ -209,7 +212,7 @@ public class ForgotPasswordScreen extends JFrame {
         return resetCode;
     }
 
-    public Boolean codeMatcher(String rstCode){
+    public Boolean codeMatchCheck(String rstCode){
         Boolean matched=false;
         if (resetSwitch == 1) {
 
@@ -257,6 +260,5 @@ public class ForgotPasswordScreen extends JFrame {
         return matched;
     }
 
-    public Boolean getEmailSent(){return emailSent;}
 }
 

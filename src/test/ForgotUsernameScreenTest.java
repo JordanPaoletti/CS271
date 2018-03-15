@@ -11,10 +11,12 @@ public class ForgotUsernameScreenTest extends TestCase {
 
     public void testForgotUsernameEmail(){
         userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
+        ForgotUsernameScreen testScreen = new ForgotUsernameScreen("test", userAccountManager);
+
         assertTrue(userAccountManager.doesUserNameExist("admin"));
         assertFalse(userAccountManager.doesUserNameExist("Billy Bob"));
-        ForgotUsernameScreen screen = new ForgotUsernameScreen("test", userAccountManager);
-        screen.makeEmail("admin@aol.com", "admin");
-        assertTrue(screen.getSent());
+        assertFalse(testScreen.getSent());
+        testScreen.makeEmail("admin@aol.com", "admin");
+        assertTrue(testScreen.getSent());
     }
 }

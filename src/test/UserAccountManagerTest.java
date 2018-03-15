@@ -29,6 +29,12 @@ public class UserAccountManagerTest extends TestCase {
 		assertFalse(userAccountManager.doesAccountExist("admin", "A1hello"));
 	}
 
+	public void testLogin(){
+		userAccountManager = new UserAccountManager();
+		userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
+	}
+
+	/*Feature used if user has entered incorrect credentials too many times*/
 	public void testLockedOut() {
 		userAccountManager = new UserAccountManager();
 		userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
@@ -40,21 +46,5 @@ public class UserAccountManagerTest extends TestCase {
 		assertTrue(userAccountManager.isLockedOut());
 		userAccountManager.setInvalidAttemptsNum();
 		assertTrue(userAccountManager.isLockedOut());
-
-	}
-	public void testLogin(){
-		userAccountManager = new UserAccountManager();
-		userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
-
-	}
-
-	public void testForgotUsername(){
-		userAccountManager = new UserAccountManager();
-		userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
-		assertTrue(userAccountManager.doesUserNameExist("admin"));
-		assertFalse(userAccountManager.doesUserNameExist("Billy Bob"));
-		ForgotUsernameScreen screen = new ForgotUsernameScreen("test", userAccountManager);
-		screen.makeEmail("admin@aol.com", "admin");
-		assertTrue(screen.getSent());
 	}
 }

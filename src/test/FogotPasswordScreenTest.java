@@ -9,6 +9,7 @@ public class FogotPasswordScreenTest extends TestCase {
 
     UserAccountManager userAccountManager = new UserAccountManager();
 
+    /*tests the emailer feature*/
     public void testForgotPassEmailSent(){
         userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
         ForgotPasswordScreen testScreen = new ForgotPasswordScreen("test", userAccountManager);
@@ -17,6 +18,7 @@ public class FogotPasswordScreenTest extends TestCase {
         assertTrue(testScreen.getEmailSent());
     }
 
+    /*Tests code emailed to users to during a forgot password session*/
     public void testResetCode(){
         userAccountManager = new UserAccountManager();
         userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
@@ -26,12 +28,15 @@ public class FogotPasswordScreenTest extends TestCase {
         //test emailed code and given code match
         String code = testScreen.forgotPassMailer("admin@aol.com", "admin");
         assertTrue(Pattern.compile(regex).matcher(code).matches());
-        //yeilds error message stating reset code is incorrect
-        assertFalse(testScreen.codeMatcher("5FE83DWF7"));
-        //test code has only letters or digits and is 9 letters
+
+        //tests invalid coxe
+        //yeilds error message stating "reset code is incorrect"
+        assertFalse(testScreen.codeMatchCheck("5FE83DWF7"));
+
+        //test code has only letters or digits and is length 9
         assertTrue(code.length()==9);
         assertTrue(testScreen.getEmailSent());
-        assertTrue(testScreen.codeMatcher(code));
+        assertTrue(testScreen.codeMatchCheck(code));
 
 
     }
