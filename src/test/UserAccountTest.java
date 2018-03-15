@@ -2,6 +2,7 @@ package test;
 
 import junit.framework.TestCase;
 
+import login.ForgotUsernameScreen;
 import login.UserAccount;
 import login.UserAccountManager;
 

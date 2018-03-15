@@ -14,6 +14,7 @@ public class ForgotUsernameScreen extends JFrame {
     private JTextField emailField = new JTextField();
     private JPanel mainPanel;
     private UserAccountManager accountManager;
+    private Boolean sent;
 
     public ForgotUsernameScreen(String title, UserAccountManager manager){
         super(title);
@@ -87,12 +88,12 @@ public class ForgotUsernameScreen extends JFrame {
     }
 
     void SubmitButton_actionPerformed(ActionEvent e){
-
         String emailAddress = emailField.getText();
         String username = accountManager.findUsername(emailAddress);
         if (accountManager.doesUserNameExist(username)){
             String body = "Your username is: " + username;
             Emailer.sendEmail(emailAddress, "Username Recovery", body);
+            setSent();
             JOptionPane.showMessageDialog(this, "Your username has been sent to your email!", "Username recovery", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
@@ -100,6 +101,25 @@ public class ForgotUsernameScreen extends JFrame {
             JOptionPane.showMessageDialog(this, usernameLabel, "Error", JOptionPane.INFORMATION_MESSAGE);
         }
         dispose();
+    }
+
+   private void setSent(){ sent = true; }
+
+   public Boolean getSent(){ return sent; }
+
+
+   //Method used for testing environment
+    public void makeEmail(String emailAddress, String username){
+        if (accountManager.doesUserNameExist(username)){
+            String body = "Your username is: " + username;
+            Emailer.sendEmail(emailAddress, "Username Recovery", body);
+            setSent();
+            JOptionPane.showMessageDialog(this, "Your username has been sent to your email!", "Username recovery", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            usernameLabel = createJLabel(username, new java.awt.Font("Dialog", 0, 13));
+            JOptionPane.showMessageDialog(this, usernameLabel, "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
 }

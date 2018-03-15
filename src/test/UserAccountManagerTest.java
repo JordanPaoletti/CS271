@@ -2,7 +2,11 @@ package test;
 
 import junit.framework.TestCase;
 
+import login.ForgotPasswordScreen;
+import login.ForgotUsernameScreen;
 import login.UserAccountManager;
+
+import java.util.regex.Pattern;
 
 
 public class UserAccountManagerTest extends TestCase {
@@ -42,5 +46,15 @@ public class UserAccountManagerTest extends TestCase {
 		userAccountManager = new UserAccountManager();
 		userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
 
+	}
+
+	public void testForgotUsername(){
+		userAccountManager = new UserAccountManager();
+		userAccountManager.addUserAccount("admin", "Ab123456", "admin@aol.com");
+		assertTrue(userAccountManager.doesUserNameExist("admin"));
+		assertFalse(userAccountManager.doesUserNameExist("Billy Bob"));
+		ForgotUsernameScreen screen = new ForgotUsernameScreen("test", userAccountManager);
+		screen.makeEmail("admin@aol.com", "admin");
+		assertTrue(screen.getSent());
 	}
 }
