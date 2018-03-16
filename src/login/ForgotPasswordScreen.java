@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Random;
 
+import static login.UserAccount.isValidPassword;
+
 public class ForgotPasswordScreen extends JFrame {
 
     private JLabel emailLabel, passwordLabel, infoLabel, passLabel;
@@ -160,9 +162,14 @@ public class ForgotPasswordScreen extends JFrame {
     	                    JOptionPane.INFORMATION_MESSAGE);
     	    }
     	    else {
-    	    	accountManager.setPassword(userName, newPass);
-    	    	JOptionPane.showMessageDialog(this, "Password has been successfully reset.", "Password recovery", JOptionPane.INFORMATION_MESSAGE);
-    			dispose();
+    	        if (isValidPassword(newPass)) {
+                    accountManager.setPassword(userName, newPass);
+                    JOptionPane.showMessageDialog(this, "Password has been successfully reset.", "Password recovery", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+    	        }
+                else {
+                    JOptionPane.showMessageDialog(this, "Invalid password", "Password reset error", JOptionPane.INFORMATION_MESSAGE);
+                }
     	    }
     		
     	}
