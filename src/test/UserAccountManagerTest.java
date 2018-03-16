@@ -47,4 +47,15 @@ public class UserAccountManagerTest extends TestCase {
 		userAccountManager.setInvalidAttemptsNum();
 		assertTrue(userAccountManager.isLockedOut());
 	}
+
+	public void testSetPassword() {
+	    userAccountManager = new UserAccountManager();
+	    userAccountManager.addUserAccount("admin", "Ab123456", "a@a.com");
+	    assertTrue(userAccountManager.doesAccountExist("admin" , "Ab123456"));
+        assertFalse(userAccountManager.doesAccountExist("admin" , "NextPass12"));
+        userAccountManager.setPassword("admin", "NextPass12");
+        assertFalse(userAccountManager.doesAccountExist("admin" , "Ab123456"));
+        assertTrue(userAccountManager.doesAccountExist("admin" , "NextPass12"));
+
+    }
 }
