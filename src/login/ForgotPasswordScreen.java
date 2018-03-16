@@ -190,7 +190,7 @@ public class ForgotPasswordScreen extends JFrame {
     }
 
 
-    /*Helpers and overriden methods for testing*/
+    /*Helpers and overloaded methods for testing*/
 
     public Boolean getEmailSent(){return emailSent;}
 

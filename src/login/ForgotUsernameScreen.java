@@ -103,7 +103,7 @@ public class ForgotUsernameScreen extends JFrame {
         dispose();
     }
 
-    /*Overriden method and helpers for testing*/
+    /*Overloaded method and helpers for testing*/
 
    private void setSent(){ sent = true; }
 
