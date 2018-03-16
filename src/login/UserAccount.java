@@ -152,7 +152,7 @@ public class UserAccount {
 
     //Create invalid string
     public static final String USERNAME_MESSAGE = "A valid username is 5 to 21 characters long and only contains letters and numbers.";
-    public static final String PASSWORD_MESSAGE = "A valid password has at least 8 characters, one capital letter, and one number.";
+    public static final String PASSWORD_MESSAGE = "A valid password has at between 8 and 256 characters, one capital letter, and one number.";
     public static final String EMAIL_MESSAGE = "Please input an active email address.";
     public static final String NEWLINE_PADDING = "\n\n";
 
