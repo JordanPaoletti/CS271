@@ -104,6 +104,7 @@ public class ForgotPasswordScreen extends JFrame {
 
     void SubmitButton_actionPerformed(ActionEvent e){
 
+    	// resetSwitch helps manage the same input fields and text, while changing them in the same window
     	if (resetSwitch == 0) {
 	        String emailAddress = emailField.getText();
 	        String username = accountManager.findUsername(emailAddress);
@@ -175,6 +176,7 @@ public class ForgotPasswordScreen extends JFrame {
     	}
 	}
 
+    // Helper method- returns a random alphanumeric string to be sent as a reset code
     public String getResetCode() {
         String alnumChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder strBuilder = new StringBuilder();
